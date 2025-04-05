@@ -10,16 +10,18 @@
 <div class="container" style="max-width: 800px;">
     <div class="card">
         <div class="card-header bg-white">
-            <h2 class="h4 mb-0 text-dark">Create New Post</h2>
+            <h2 class="h4 mb-0 text-dark">Edit Post</h2>
         </div>
 
         <div class="card-body">
-            <form method="POST" action="/posts">
+            <form method="POST" action="{{route('posts.update', $post['id'])}}">
                 @csrf
+                @method('PUT')
                 <!-- Title Input -->
                 <div class="mb-3">
                     <label for="title" class="form-label">Title</label>
                     <input
+                        value="{{$post['title']}}"
                         name="title"
                         type="text"
                         id="title"
@@ -30,6 +32,7 @@
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
                     <input
+                        value="{{$post['email']}}"
                         name="email"
                         type="email"
                         id="email"
@@ -41,6 +44,7 @@
                 <div class="mb-3">
                     <label for="description" class="form-label">Description</label>
                     <textarea
+
                         name="description"
                         id="description"
                         rows="5"
@@ -52,6 +56,7 @@
                 <div class="mb-4">
                     <label for="creator" class="form-label">Post Creator</label>
                     <input
+                        value="{{$post['posted_by']}}"
                         name="posted_by"
                         type="text"
                         id="creator"
