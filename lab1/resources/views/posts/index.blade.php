@@ -12,7 +12,7 @@
 <body>
 
 <div class="text-center my-4">
-    <a href="#" class="btn btn-success">
+    <a href="{{route('posts.create')}}" class="btn btn-success">
         Create Post
     </a>
 </div>
@@ -40,7 +40,11 @@
                             <td>
                                 <a href="{{ route('posts.show', $post['id']) }}" class="btn btn-sm btn-info text-white">View</a>
                                 <a href="#" class="btn btn-sm btn-primary">Edit</a>
-                                <a href="#" class="btn btn-sm btn-danger">Delete</a>
+                                <form action="{{ route('posts.delete', $post['id']) }}" method="POST" style="display: inline-block;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach
