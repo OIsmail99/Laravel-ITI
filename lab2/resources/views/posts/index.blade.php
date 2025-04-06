@@ -58,22 +58,7 @@
 
             <!-- Pagination -->
             <div class="card-footer d-flex justify-content-end">
-                <nav>
-                    <ul class="pagination pagination-sm mb-0">
-                        <li class="page-item">
-                            <a class="page-link" href="#">«</a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item active" aria-current="page">
-                            <span class="page-link">2</span>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">4</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">»</a>
-                        </li>
-                    </ul>
-                </nav>
+                {{ $posts->links() }}
             </div>
         </div>
     </div>
