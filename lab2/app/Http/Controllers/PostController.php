@@ -69,6 +69,16 @@ class PostController extends Controller
         $post->save();
         return to_route("posts.index");
     }
+    public function restore($id)
+    {
+        $post = Post::withTrashed()->find($id);
+        if (!$post) {
+            abort(404);
+        }
+        $post->restore();
+        return to_route("posts.soft");
+    }
+
     public function edit($id)
     {
         $post = Post::find($id);

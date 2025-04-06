@@ -39,6 +39,14 @@
                                 <td>{{ $post->created_at->format('y-m-d') }}</td>
                                 <td>{{ $post->deleted_at }}</td>
                                 <td>
+                                    <form action="{{ route('posts.restore', $post['id']) }}" method="POST"
+                                        style="display: inline-block;"
+                                        onsubmit="return confirm('Are you sure you want to restore this post?');">
+                                        @csrf
+                                        @method('PUT')
+                                        <button type="submit" class="btn btn-sm btn-danger">Restore</button>
+                                    </form>
+
                                     <a href="{{ route('posts.show', $post['id']) }}"
                                         class="btn btn-sm btn-info text-white">View</a>
                                 </td>
