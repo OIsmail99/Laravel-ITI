@@ -10,22 +10,28 @@ class PostController extends Controller
 {
 
 
-    function index()
+    public function index()
     {
         return view('posts.index', ['posts' => Post::simplePaginate(5)]); //passing posts to the view
     }
 
 
-    function show($id)
+    public function show($id)
     {
-        $post = Post::find($id);
+        $post = Post::withTrashed()->find($id);
         if (!$post) {
             abort(404);
         }
         return view('posts.show', ['post' => $post,]);
     }
 
-    function delete($id)
+    public function showDeleted()
+    {
+        $posts = Post::onlyTrashed()->simplePaginate(5);
+        return view('posts.soft', ['posts' => $posts]);
+    }
+
+    public function delete($id)
     {
         $post = Post::find($id);
         if (!$post) {
@@ -45,13 +51,13 @@ class PostController extends Controller
         // return redirect()->route('posts.index');
     }
 
-    function create()
+    public function create()
     {
         $users = User::all();
         return view('posts.create', ['users' => $users]);
     }
 
-    function store()
+    public function store()
     {
         //TODO what if a post was created by a non-existing user?
         //TODO user names & emails should appear as dropdown.
@@ -63,7 +69,7 @@ class PostController extends Controller
         $post->save();
         return to_route("posts.index");
     }
-    function edit($id)
+    public function edit($id)
     {
         $post = Post::find($id);
         if (!$post) {
@@ -72,7 +78,7 @@ class PostController extends Controller
         return view('posts.edit', ['post' => $post]);
     }
 
-    function update($id)
+    public function update($id)
     {
         $post = Post::find($id);
         $post->title = request('title');

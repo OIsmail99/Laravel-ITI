@@ -49,9 +49,15 @@
 
                 <!-- Back Button -->
                 <div class="text-end">
-                    <a href="{{ route('posts.index') }}" class="btn btn-secondary">
-                        Back to All Posts
-                    </a>
+                    @if($post->deleted_at == null)
+                        <a href="{{ route('posts.index') }}" class="btn btn-secondary">
+                            Back to All Posts
+                        </a>
+                    @else
+                        <a href="{{ route('posts.soft') }}" class="btn btn-secondary">
+                            Back to deleted Posts
+                        </a>
+                    @endif
                 </div>
             </div>
         </div>
