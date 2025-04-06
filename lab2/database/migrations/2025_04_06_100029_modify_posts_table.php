@@ -15,8 +15,8 @@ return new class extends Migration {
         Schema::table(
             "posts",
             function (Blueprint $table) {
-                $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'))->change();
-                $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'))->change();
+                $table->timestamp('created_at')->useCurrent()->change();
+                $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate()->change();
             }
         );
     }
