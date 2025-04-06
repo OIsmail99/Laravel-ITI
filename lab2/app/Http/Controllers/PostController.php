@@ -13,7 +13,6 @@ class PostController extends Controller
     function index()
     {
         $posts = Post::all();
-
         return view('posts.index', ['posts' => $posts]); //passing posts to the view
     }
 
@@ -76,25 +75,11 @@ class PostController extends Controller
 
     function update($id)
     {
-        // $posts = session('posts', self::$posts);
-        // $post = null;
-        // $index = 0;
-        // for ($i = 0; $i < count($posts); $i++) {
-        //     if ($posts[$i]['id'] == $id) {
-        //         $post = $posts[$i];
-        //         $index = $i;
-        //         break;
-        //     }
-        // }
-        // if (!$post) {
-        //     abort(404);
-        // }
-        // $post['title'] = request('title');
-        // $post['posted_by'] = request('posted_by');
-        // $post['email'] = request('email');
-        // $posts[$index] = $post;
-        // session(['posts' => $posts]);
-        // return redirect()->route('posts.index');
+        $post = Post::find($id);
+        $post->title = request('title');
+        $post->description = request('description');
+        $post->save();
+        return to_route('posts.index');
     }
 
 }
