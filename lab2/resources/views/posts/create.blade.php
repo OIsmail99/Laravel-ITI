@@ -12,22 +12,26 @@
     <div class="container" style="max-width: 800px;">
         <div class="card">
             <div class="card-header bg-white">
-                <h2 class="h4 mb-0 text-dark">Edit Post</h2>
+                <h2 class="h4 mb-0 text-dark">Create New Post</h2>
             </div>
 
             <div class="card-body">
-                <form method="POST" action="{{route('posts.update', $post['id'])}}">
+                <form method="POST" action="/posts">
                     @csrf
-                    @method('PUT')
                     <!-- Title Input -->
                     <div class="mb-3">
                         <label for="title" class="form-label">Title</label>
-                        <input value="{{$post['title']}}" name="title" type="text" id="title" class="form-control">
+                        <input name="title" type="text" id="title" class="form-control">
                     </div>
 
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input value="{{$post['email']}}" name="email" type="email" id="email" class="form-control">
+                    <div class="mb-4">
+                        <label for="email" class="form-label">Creator Email</label>
+                        <select name="email" id="email" class="form-control">
+                            <!-- <option value="">Select Email</option> -->
+                            @foreach ($users as $user)
+                                <option value="{{ $user->email }}">{{ $user->email }}</option>
+                            @endforeach
+                        </select>
                     </div>
 
                     <!-- Description Textarea -->
@@ -37,11 +41,15 @@
                     </div>
 
                     <!-- Post Creator Select -->
-                    <div class="mb-4">
+                    <!-- <div class="mb-4">
                         <label for="creator" class="form-label">Post Creator</label>
-                        <input value="{{$post['posted_by']}}" name="posted_by" type="text" id="creator"
-                            class="form-control">
-                    </div>
+                        <select name="posted_by" id="creator" class="form-control"> -->
+                    <!-- <option value="">Select Creator</option> -->
+                    <!-- @foreach ($users as $user)
+                                <option value="{{ $user->name }}">{{ $user->name }}</option>
+                            @endforeach
+                        </select>
+                    </div> -->
 
                     <!-- Submit Button -->
                     <div class="d-flex justify-content-end">

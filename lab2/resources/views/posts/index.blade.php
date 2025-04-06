@@ -18,15 +18,13 @@
         </a>
     </div>
 
-    //TODO! use slots next time
-
     <div class="container mt-4">
         <div class="card">
             <div class="table-responsive">
                 <table class="table table-bordered table-hover mb-0">
                     <thead class="table-light">
                         <tr>
-                            <th>#</th>
+                            <th>ID</th>
                             <th>Title</th>
                             <th>Posted By</th>
                             <th>Created At</th>
@@ -38,7 +36,7 @@
                             <tr>
                                 <td>{{ $post['id'] }}</td>
                                 <td>{{ $post['title'] }}</td>
-                                <td>{{ $post['posted_by'] }}</td>
+                                <td>{{ $post->user->name }}</td>
                                 <td>{{ $post['created_at'] }}</td>
                                 <td>
                                     <a href="{{ route('posts.show', $post['id']) }}"
@@ -49,7 +47,6 @@
                                         onsubmit="return confirm('Are you sure you want to delete this post?');">
                                         @csrf
                                         @method('DELETE')
-                                        <!-- spoofing -->
                                         <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                                     </form>
                                 </td>
