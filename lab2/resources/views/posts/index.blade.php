@@ -37,7 +37,7 @@
                                 <td>{{ $post['id'] }}</td>
                                 <td>{{ $post['title'] }}</td>
                                 <td>{{ $post->user->name }}</td>
-                                <td>{{ $post['created_at'] }}</td>
+                                <td>{{ $post->created_at->format('y-m-d') }}</td>
                                 <td>
                                     <a href="{{ route('posts.show', $post['id']) }}"
                                         class="btn btn-sm btn-info text-white">View</a>
