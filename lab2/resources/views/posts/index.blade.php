@@ -56,6 +56,9 @@
                 </table>
             </div>
 
+            <div class="card-footer d-flex justify-content-end">
+                <a href="{{ route('posts.show', $post['id']) }}" class="btn btn-sm btn-danger">View deleted posts</a>
+            </div>
             <!-- Pagination -->
             <div class="card-footer d-flex justify-content-end">
                 {{ $posts->links() }}
