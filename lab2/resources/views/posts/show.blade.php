@@ -50,6 +50,9 @@
                 <!-- Back Button -->
                 <div class="text-end">
                     @if($post->deleted_at == null)
+                        <a href="{{ route('comments.index', $post->id) }}" class="btn btn-success">
+                            Show Comments
+                        </a>
                         <a href="{{ route('posts.index') }}" class="btn btn-secondary">
                             Back to All Posts
                         </a>
