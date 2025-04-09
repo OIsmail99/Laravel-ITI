@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\StorePostRequest;
+use App\Http\Requests\UpdatePostRequest;
 use App\Models\User;
 use App\Models\Post;
 
@@ -39,16 +41,6 @@ class PostController extends Controller
         }
         $post->delete();
         return to_route('posts.index');
-        // $posts = session('posts', self::$posts);
-        // $filteredPosts = [];
-        // foreach ($posts as $post) {
-        //     if ($post['id'] != $id) {
-        //         $filteredPosts[] = $post;
-        //     }
-        // }
-        // session(['posts' => $filteredPosts]);
-
-        // return redirect()->route('posts.index');
     }
 
     public function create()
@@ -57,15 +49,15 @@ class PostController extends Controller
         return view('posts.create', ['users' => $users]);
     }
 
-    public function store()
+    public function store(StorePostRequest $request)
     {
         //TODO what if a post was created by a non-existing user?
         //TODO user names & emails should appear as dropdown.
         //TODO what if mismatch between username and email?
         $post = new Post();
-        $post->title = request('title');
-        $post->description = request('description');
-        $post->user_id = User::where('email', request('email'))->first()->id;
+        $post->title = request()->title;
+        $post->description = request()->description;
+        $post->user_id = User::where('email', request()->email)->first()->id;
         $post->save();
         return to_route("posts.index");
     }
@@ -88,7 +80,7 @@ class PostController extends Controller
         return view('posts.edit', ['post' => $post]);
     }
 
-    public function update($id)
+    public function update(UpdatePostRequest $request , $id)
     {
         $post = Post::find($id);
         $post->title = request('title');

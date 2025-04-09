@@ -10,7 +10,18 @@
 
 <body>
     <div class="container" style="max-width: 800px;">
-        <div class="card">
+        @if ($errors->any())
+            <div class="alert alert-danger mt-4">
+                <h5 class="alert-heading"><i class="bi bi-exclamation-triangle-fill me-2"></i>Please fix the following errors:</h5>
+                <ul class="mb-0 ps-3">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        <div class="card mt-4">
             <div class="card-header bg-white">
                 <h2 class="h4 mb-0 text-dark">Create New Post</h2>
             </div>
@@ -62,6 +73,8 @@
         </div>
     </div>
 
+    <!-- Add Bootstrap Icons for better styling -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 </body>
 
 </html>

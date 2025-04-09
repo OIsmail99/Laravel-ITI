@@ -9,6 +9,16 @@
 </head>
 
 <body>
+    @if ($errors->any())
+            <div class="alert alert-danger mt-4">
+                <h5 class="alert-heading"><i class="bi bi-exclamation-triangle-fill me-2"></i>Please fix the following errors:</h5>
+                <ul class="mb-0 ps-3">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
     <div class="container" style="max-width: 800px;">
         <div class="card">
             <div class="card-header bg-white">

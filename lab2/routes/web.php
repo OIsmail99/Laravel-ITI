@@ -39,20 +39,25 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
-Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
-Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('posts.edit');
-Route::put('/posts/{post}', [PostController::class, 'update'])->name('posts.update');
-Route::get('/deletedPosts', [PostController::class, 'showDeleted'])->name('posts.soft');
-Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
-Route::put('/posts/{post}/restore', [PostController::class, 'restore'])->name('posts.restore');
-Route::get("/posts/{post}", [PostController::class, "show"])->name("posts.show");
-Route::delete("/posts/{post}", [PostController::class, "delete"])->name("posts.delete");
+//posts routes
+Route::controller(PostController::class)->group(function () {
+    Route::middleware(['auth'])->get('/posts', 'index')->name('posts.index');
+    Route::get('/posts/create', 'create')->name('posts.create');
+    Route::get('/posts/{post}/edit', 'edit')->name('posts.edit');
+    Route::put('/posts/{post}', 'update')->name('posts.update');
+    Route::get('/deletedPosts', 'showDeleted')->name('posts.soft');
+    Route::post('/posts', 'store')->name('posts.store');
+    Route::put('/posts/{post}/restore', 'restore')->name('posts.restore');
+    Route::get('/posts/{post}', 'show')->name('posts.show');
+    Route::delete('/posts/{post}', 'delete')->name('posts.delete');
+});
 
 //comments routes
-Route::get('/comments/{post}', [CommentController::class, 'index'])->name('comments.index');
-Route::delete('/comments/{comment}', [CommentController::class, 'delete'])->name('comments.delete');
-Route::get('/comments/create/{post}', [CommentController::class, 'create'])->name('comments.create');
-Route::post('/comments/{post}', [CommentController::class, 'store'])->name('comments.store');
-Route::get('/comments/{comment}/edit', [CommentController::class, 'edit'])->name('comments.edit');
-Route::put('/comments/{comment}', [CommentController::class, 'update'])->name('comments.update');
+Route::controller(CommentController::class)->group(function () {
+    Route::get('/comments/{post}', 'index')->name('comments.index');
+    Route::delete('/comments/{comment}', 'delete')->name('comments.delete');
+    Route::get('/comments/create/{post}', 'create')->name('comments.create');
+    Route::post('/comments/{post}', 'store')->name('comments.store');
+    Route::get('/comments/{comment}/edit','edit')->name('comments.edit');
+    Route::put('/comments/{comment}', 'update')->name('comments.update');
+});
