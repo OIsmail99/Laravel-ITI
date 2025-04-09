@@ -23,10 +23,11 @@ class StorePostRequest extends FormRequest
      */
     public function rules(): array
     {
-            return [
-                'title' => ['required', 'min:3', 'unique:posts'],
-                'description' => ['required', 'min:10'],
-            ];
+        return [
+            'title' => ['required', 'min:3', 'unique:posts'],
+            'description' => ['required', 'min:10'],
+            // 'image' => ['required', 'image', 'mimes:jpg, png'],
+        ];
 
     }
     public function messages(): array
@@ -37,6 +38,7 @@ class StorePostRequest extends FormRequest
             'title.unique' => 'Title must be unique',
             'description.required' => 'Description is required',
             'description.min' => 'Description must be at least 5 characters',
+            // 'image.mimes' => 'invalid image extension'
         ];
     }
 }

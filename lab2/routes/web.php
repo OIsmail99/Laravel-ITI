@@ -48,7 +48,7 @@ Route::controller(PostController::class)->group(function () {
     Route::get('/deletedPosts', 'showDeleted')->name('posts.soft');
     Route::post('/posts', 'store')->name('posts.store');
     Route::put('/posts/{post}/restore', 'restore')->name('posts.restore');
-    Route::get('/posts/{post}', 'show')->name('posts.show');
+    Route::get('/posts/{slug}', 'show')->name('posts.show');
     Route::delete('/posts/{post}', 'delete')->name('posts.delete');
 });
 

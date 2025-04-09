@@ -7,6 +7,8 @@ use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\User;
 use App\Models\Post;
+use Illuminate\Support\Str;
+use App\Jobs\PruneOldPostsJob;
 
 class PostController extends Controller
 {
@@ -14,13 +16,15 @@ class PostController extends Controller
 
     public function index()
     {
-        return view('posts.index', ['posts' => Post::simplePaginate(5)]); //passing posts to the view
+
+        $posts = Post::simplePaginate(5);
+        return view('posts.index', ['posts' => $posts]); //passing posts to the view
     }
 
 
-    public function show($id)
+    public function show($slug)
     {
-        $post = Post::withTrashed()->find($id);
+        $post = Post::withTrashed()->where('slug', $slug)->first();
         if (!$post) {
             abort(404);
         }
@@ -58,6 +62,12 @@ class PostController extends Controller
         $post->title = request()->title;
         $post->description = request()->description;
         $post->user_id = User::where('email', request()->email)->first()->id;
+        $post->slug = Str::slug(request()->title);
+        // dd($request->all());
+        $post->image = request()->file('image')->store('images', 'public');
+        $post->image=explode('/', $post->image);
+        $post->image= $post->image[1];
+        // dd($post->image);
         $post->save();
         return to_route("posts.index");
     }
@@ -80,11 +90,12 @@ class PostController extends Controller
         return view('posts.edit', ['post' => $post]);
     }
 
-    public function update(UpdatePostRequest $request , $id)
+    public function update(UpdatePostRequest $request, $id)
     {
         $post = Post::find($id);
         $post->title = request('title');
         $post->description = request('description');
+        $post->slug = Str::slug(request('title'));
         $post->save();
         return to_route('posts.index');
     }

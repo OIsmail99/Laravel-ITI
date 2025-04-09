@@ -26,8 +26,10 @@
                         <tr>
                             <th>ID</th>
                             <th>Title</th>
+                            <th>Slug</th>
                             <th>Posted By</th>
                             <th>Created At</th>
+                            <th>image</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -36,10 +38,12 @@
                             <tr>
                                 <td>{{ $post['id'] }}</td>
                                 <td>{{ $post['title'] }}</td>
+                                <td>{{ $post['slug'] }}</td>
                                 <td>{{ $post->user->name }}</td>
                                 <td>{{ $post->created_at->format('y-m-d') }}</td>
+                                <td> {{ $post->image }}</td>
                                 <td>
-                                    <a href="{{ route('posts.show', $post['id']) }}"
+                                    <a href="{{ route('posts.show', $post->slug) }}"
                                         class="btn btn-sm btn-info text-white">View</a>
                                     <a href="{{route('posts.edit', $post['id'])}}" class="btn btn-sm btn-primary">Edit</a>
                                     <form action="{{ route('posts.delete', $post['id']) }}" method="POST"

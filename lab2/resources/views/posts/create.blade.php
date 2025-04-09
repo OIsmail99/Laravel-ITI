@@ -12,7 +12,8 @@
     <div class="container" style="max-width: 800px;">
         @if ($errors->any())
             <div class="alert alert-danger mt-4">
-                <h5 class="alert-heading"><i class="bi bi-exclamation-triangle-fill me-2"></i>Please fix the following errors:</h5>
+                <h5 class="alert-heading"><i class="bi bi-exclamation-triangle-fill me-2"></i>Please fix the following
+                    errors:</h5>
                 <ul class="mb-0 ps-3">
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -27,12 +28,17 @@
             </div>
 
             <div class="card-body">
-                <form method="POST" action="/posts">
+                <form method="POST" action="/posts" enctype="multipart/form-data">
                     @csrf
                     <!-- Title Input -->
                     <div class="mb-3">
                         <label for="title" class="form-label">Title</label>
                         <input name="title" type="text" id="title" class="form-control">
+                    </div>
+                    <!-- Image Input -->
+                    <div class="mb-3">
+                        <label for="image" class="form-label">Image</label>
+                        <input name="image" type="file" id="image" class="form-control">
                     </div>
 
                     <div class="mb-4">
@@ -50,17 +56,6 @@
                         <label for="description" class="form-label">Description</label>
                         <textarea name="description" id="description" rows="5" class="form-control"></textarea>
                     </div>
-
-                    <!-- Post Creator Select -->
-                    <!-- <div class="mb-4">
-                        <label for="creator" class="form-label">Post Creator</label>
-                        <select name="posted_by" id="creator" class="form-control"> -->
-                    <!-- <option value="">Select Creator</option> -->
-                    <!-- @foreach ($users as $user)
-                                <option value="{{ $user->name }}">{{ $user->name }}</option>
-                            @endforeach
-                        </select>
-                    </div> -->
 
                     <!-- Submit Button -->
                     <div class="d-flex justify-content-end">
