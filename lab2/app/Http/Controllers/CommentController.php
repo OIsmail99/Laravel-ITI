@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Comment;
 use App\Models\User;
 use App\Models\Post;
@@ -34,7 +35,7 @@ class CommentController extends Controller
     {
         $post = Post::find($postId);
         $comment = new Comment();
-        $comment->user_id = auth()->id() ?? 1;
+        $comment->user_id = Auth::user()->id;;
         $comment->post_id = $postId;
         $comment->content = request('content');
         $comment->save();

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Rules\OnlyThree;
 
 class StorePostRequest extends FormRequest
 {
@@ -24,7 +25,7 @@ class StorePostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => ['required', 'min:3', 'unique:posts'],
+            'title' => ['required', 'min:3', 'unique:posts', new OnlyThree],
             'description' => ['required', 'min:10'],
             // 'image' => ['required', 'image', 'mimes:jpg, png'],
         ];

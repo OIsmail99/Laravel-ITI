@@ -41,7 +41,7 @@
                         <input name="image" type="file" id="image" class="form-control">
                     </div>
 
-                    <div class="mb-4">
+                    {{-- <div class="mb-4">
                         <label for="email" class="form-label">Creator Email</label>
                         <select name="email" id="email" class="form-control">
                             <!-- <option value="">Select Email</option> -->
@@ -49,7 +49,7 @@
                                 <option value="{{ $user->email }}">{{ $user->email }}</option>
                             @endforeach
                         </select>
-                    </div>
+                    </div> --}}
 
                     <!-- Description Textarea -->
                     <div class="mb-3">

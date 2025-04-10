@@ -44,6 +44,12 @@
                         <div>
                             <h5>Created At :- <span class="fw-normal">{{$post['created_at']}}</span></h5>
                         </div>
+                        @if($post->image != null)
+                            <div>
+                                <h5>Image :-</h5>
+                                <img src="{{ asset('storage/images/' . $post->image) }}" alt="Post Image" class="img-fluid">
+                            </div>
+                        @endif
                     </div>
                 </div>
 
