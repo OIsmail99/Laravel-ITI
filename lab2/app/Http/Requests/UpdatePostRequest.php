@@ -28,8 +28,8 @@ class UpdatePostRequest extends FormRequest
                 'required',
                 'min:3',
                 Rule::unique('posts')->ignore($this->post),
-                'image' => ['image', 'mimes:jpg, png']
             ],
+            'image' => ['image', 'mimes:jpg, png'],
             'description' => ['required', 'min:10'],
         ];
     }

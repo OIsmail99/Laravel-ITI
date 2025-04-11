@@ -18,7 +18,7 @@ class PostController extends Controller
     public function index()
     {
 
-        $posts = Post::simplePaginate(5);
+        $posts = Post::simplePaginate(5); //deleted_at is null
         return view('posts.index', ['posts' => $posts]); //passing posts to the view
     }
 
@@ -82,7 +82,7 @@ class PostController extends Controller
         if (!$post) {
             abort(404);
         }
-        $post->restore();
+        $post->restore(); 
         return to_route("posts.soft");
     }
 

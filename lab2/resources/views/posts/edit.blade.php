@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    @if ($errors->any())
+        @if ($errors->any())
             <div class="alert alert-danger mt-4">
                 <h5 class="alert-heading"><i class="bi bi-exclamation-triangle-fill me-2"></i>Please fix the following errors:</h5>
                 <ul class="mb-0 ps-3">

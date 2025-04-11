@@ -27,7 +27,7 @@ class StorePostRequest extends FormRequest
         return [
             'title' => ['required', 'min:3', 'unique:posts', new OnlyThree],
             'description' => ['required', 'min:10'],
-            // 'image' => ['required', 'image', 'mimes:jpg, png'],
+            'image' => ['required', 'image', 'mimes:jpg, png'],
         ];
 
     }
@@ -39,7 +39,7 @@ class StorePostRequest extends FormRequest
             'title.unique' => 'Title must be unique',
             'description.required' => 'Description is required',
             'description.min' => 'Description must be at least 5 characters',
-            // 'image.mimes' => 'invalid image extension'
+            'image.mimes' => 'invalid image extension'
         ];
     }
 }

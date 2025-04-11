@@ -24,6 +24,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Title</th>
+                            <th>Slug</th>
                             <th>Posted By</th>
                             <th>Created At</th>
                             <th>Deleted At</th>
@@ -35,6 +36,7 @@
                             <tr>
                                 <td>{{ $post['id'] }}</td>
                                 <td>{{ $post['title'] }}</td>
+                                <td>{{ $post['slug'] }}</td>
                                 <td>{{ $post->user->name }}</td>
                                 <td>{{ $post->created_at->format('y-m-d') }}</td>
                                 <td>{{ $post->deleted_at }}</td>
@@ -47,7 +49,7 @@
                                         <button type="submit" class="btn btn-sm btn-danger">Restore</button>
                                     </form>
 
-                                    <a href="{{ route('posts.show', $post['id']) }}"
+                                    <a href="{{ route('posts.show', $post->slug) }}"
                                         class="btn btn-sm btn-info text-white">View</a>
                                 </td>
                             </tr>

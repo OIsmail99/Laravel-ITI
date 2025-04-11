@@ -45,12 +45,15 @@
                                 <td>
                                     <a href="{{ route('posts.show', $post->slug) }}"
                                         class="btn btn-sm btn-info text-white">View</a>
+
                                     <a href="{{route('posts.edit', $post['id'])}}" class="btn btn-sm btn-primary">Edit</a>
                                     <form action="{{ route('posts.delete', $post['id']) }}" method="POST"
                                         style="display: inline-block;"
                                         onsubmit="return confirm('Are you sure you want to delete this post?');">
                                         @csrf
+                                        {{-- csrf vulnerability --}}
                                         @method('DELETE')
+                                        {{-- http spoofing --}}
                                         <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                                     </form>
                                 </td>
@@ -67,6 +70,10 @@
             <div class="card-footer d-flex justify-content-end">
                 {{ $posts->links() }}
             </div>
+
+            {{-- one post has many comments, one user has many comments --}}
+            {{-- comments : user_id, post_id --}}
+
         </div>
     </div>
 
