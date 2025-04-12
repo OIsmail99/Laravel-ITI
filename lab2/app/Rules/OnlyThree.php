@@ -18,9 +18,9 @@ class OnlyThree implements InvokableRule
      */
     public function __invoke($attribute, $value, $fail)
     {
-        $user = Auth::user();
-        if(count($user->posts) >= 3){
-            $fail('You can only create 3 posts.');
-        }
+        // $user = Auth::user();
+        // if(count($user->posts) >= 3){
+        //     $fail('You can only create 3 posts.');
+        // }
     }
 }

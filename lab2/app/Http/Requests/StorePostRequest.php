@@ -24,6 +24,13 @@ class StorePostRequest extends FormRequest
      */
     public function rules(): array
     {
+        if ($this->is('api/*')) {
+            return [
+                'title' => ['required', 'min:3', 'unique:posts', new OnlyThree],
+                'description' => ['required', 'min:10'],
+                'image' => ['nullable', 'image', 'mimes:jpg,png'],
+            ];
+        }
         return [
             'title' => ['required', 'min:3', 'unique:posts', new OnlyThree],
             'description' => ['required', 'min:10'],

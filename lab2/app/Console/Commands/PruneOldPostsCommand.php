@@ -12,7 +12,7 @@ class PruneOldPostsCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'posts:prune'; //name of the command
+    protected $signature = 'posts:prune';
 
     /**
      * The console command description.
